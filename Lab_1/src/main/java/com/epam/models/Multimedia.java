@@ -1,10 +1,11 @@
 package com.epam.models;
 
 public class Multimedia extends ElectricalAppliance {
+
     private MultimediaType multiMediaType;
 
-    public Multimedia(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn
-            , MultimediaType multiMediaType) {
+    public Multimedia(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn,
+                      MultimediaType multiMediaType) {
         super(applianceName, brand, powerConsumption, yearProduction, turnOn);
         this.multiMediaType = multiMediaType;
     }
@@ -37,7 +38,7 @@ public class Multimedia extends ElectricalAppliance {
 
     @Override
     public String toString() {
-        return "\nMultiMedia {" + super.toString()+
+        return "\nMultiMedia {" + super.toString() +
                 "multiMediaType= " + multiMediaType +
                 '}';
     }

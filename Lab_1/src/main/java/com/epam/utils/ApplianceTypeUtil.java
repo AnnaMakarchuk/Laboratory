@@ -1,8 +1,13 @@
 package com.epam.utils;
 
+import com.epam.factories.ElectricalAppliancesType;
 import com.epam.models.*;
 
 public class ApplianceTypeUtil {
+
+    public static ElectricalAppliancesType getElectricalAppliancesType(String electricalAppliancesType) {
+        return ElectricalAppliancesType.valueOf(electricalAppliancesType.toUpperCase());
+    }
 
     public static String findType(ElectricalAppliance electricalAppliance) {
         String type = "";

@@ -1,10 +1,11 @@
 package com.epam.models;
 
 public class PowerTool extends ElectricalAppliance {
+
     private PowerToolType powerToolType;
 
-    public PowerTool(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn
-            , PowerToolType powerToolType) {
+    public PowerTool(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn,
+                     PowerToolType powerToolType) {
         super(applianceName, brand, powerConsumption, yearProduction, turnOn);
         this.powerToolType = powerToolType;
     }
@@ -37,7 +38,7 @@ public class PowerTool extends ElectricalAppliance {
 
     @Override
     public String toString() {
-        return "\nPowerTool {" + super.toString()+
+        return "\nPowerTool {" + super.toString() +
                 "powerToolType= " + powerToolType +
                 '}';
     }

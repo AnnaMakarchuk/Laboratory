@@ -4,8 +4,8 @@ public class HomeAppliance extends ElectricalAppliance {
 
     private HomeApplianceType homeApplianceType;
 
-    public HomeAppliance(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn
-            , HomeApplianceType homeApplianceType) {
+    public HomeAppliance(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn,
+                         HomeApplianceType homeApplianceType) {
         super(applianceName, brand, powerConsumption, yearProduction, turnOn);
         this.homeApplianceType = homeApplianceType;
     }

@@ -65,7 +65,8 @@ public class ElectricalAppliance {
 
         if (Double.compare(that.powerConsumption, powerConsumption) != 0) return false;
         if (yearProduction != that.yearProduction) return false;
-        if (applianceName != null ? !applianceName.equals(that.applianceName) : that.applianceName != null) return false;
+        if (applianceName != null ? !applianceName.equals(that.applianceName) : that.applianceName != null)
+            return false;
         return brand != null ? brand.equals(that.brand) : that.brand == null;
     }
 

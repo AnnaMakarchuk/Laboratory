@@ -2,6 +2,8 @@ package com.epam.factories;
 
 import com.epam.models.ElectricalAppliance;
 import com.epam.models.HomeAppliance;
+import com.epam.utils.ColumnNames;
+import com.epam.utils.ResultSetFields;
 import org.junit.Test;
 
 import java.sql.ResultSet;
@@ -23,38 +25,35 @@ public class HomeApplianceFactoryTest {
         int yearProduction = 2015;
         boolean turnOn = false;
         String type = "home";
-
-        ElectricalAppliance result = HomeApplianceFactory.getInstance()
+        ElectricalAppliance electricalApplianceResult = HomeApplianceFactory.getInstance()
                 .createFactory(applianceName, brand, powerConsumption, yearProduction, turnOn, type);
-
-        assertThat(result, instanceOf(HomeAppliance.class));
-        HomeAppliance homeResult = (HomeAppliance)result;
-        assertThat(homeResult.getApplianceName(), equalTo(applianceName));
-        assertThat(homeResult.getBrand(), equalTo(brand));
-        assertThat(homeResult.getPowerConsumption(), equalTo(powerConsumption));
-        assertThat(homeResult.getYearProduction(), equalTo(yearProduction));
-        assertThat(homeResult.isTurnOn(), equalTo(turnOn));
-        assertThat(homeResult.getHomeApplianceType().toString(), equalTo(type.toUpperCase()));
+        assertThat(electricalApplianceResult, instanceOf(HomeAppliance.class));
+        HomeAppliance homeApplianceResult = (HomeAppliance) electricalApplianceResult;
+        assertThat(homeApplianceResult.getApplianceName(), equalTo(applianceName));
+        assertThat(homeApplianceResult.getBrand(), equalTo(brand));
+        assertThat(homeApplianceResult.getPowerConsumption(), equalTo(powerConsumption));
+        assertThat(homeApplianceResult.getYearProduction(), equalTo(yearProduction));
+        assertThat(homeApplianceResult.isTurnOn(), equalTo(turnOn));
+        assertThat(homeApplianceResult.getHomeApplianceType().toString(), equalTo(type.toUpperCase()));
     }
 
     @Test
     public void shouldCreateHomeApplianceFromResultSet() throws SQLException {
         ResultSet rsMock = mock(ResultSet.class);
-        when(rsMock.getString("appliance_name")).thenReturn("iron");
-        when(rsMock.getString("brand")).thenReturn("H");
-        when(rsMock.getInt("power_watt")).thenReturn(100);
-        when(rsMock.getInt("production_year")).thenReturn(2015);
-        when(rsMock.getBoolean("turned_on")).thenReturn(false);
-        when(rsMock.getString("appliance_type")).thenReturn("home");
-
-        ElectricalAppliance result = HomeApplianceFactory.getInstance().create(rsMock);
-        assertThat(result, instanceOf(HomeAppliance.class));
-        HomeAppliance homeResult = (HomeAppliance)result;
-        assertThat(homeResult.getApplianceName(), equalTo("iron"));
-        assertThat(homeResult.getBrand(), equalTo("H"));
-        assertThat(homeResult.getPowerConsumption(), equalTo(100));
-        assertThat(homeResult.getYearProduction(), equalTo(2015));
-        assertThat(homeResult.isTurnOn(), equalTo(false));
-        assertThat(homeResult.getHomeApplianceType().toString(), equalTo("home".toUpperCase()));
+        when(ResultSetFields.getStringByName(ColumnNames.APPLIANCE_NAME, rsMock)).thenReturn("iron");
+        when(ResultSetFields.getStringByName(ColumnNames.BRAND, rsMock)).thenReturn("H");
+        when(ResultSetFields.getIntByName(ColumnNames.POWER_WATT, rsMock)).thenReturn(100);
+        when(ResultSetFields.getIntByName(ColumnNames.PRODUCTION_YEAR, rsMock)).thenReturn(2015);
+        when(ResultSetFields.getBooleanByName(ColumnNames.TURNED_ON, rsMock)).thenReturn(false);
+        when(ResultSetFields.getStringByName(ColumnNames.APPLIANCE_TYPE, rsMock)).thenReturn("home");
+        ElectricalAppliance electricalApplianceResult = HomeApplianceFactory.getInstance().create(rsMock);
+        assertThat(electricalApplianceResult, instanceOf(HomeAppliance.class));
+        HomeAppliance homeApplianceResult = (HomeAppliance) electricalApplianceResult;
+        assertThat(homeApplianceResult.getApplianceName(), equalTo("iron"));
+        assertThat(homeApplianceResult.getBrand(), equalTo("H"));
+        assertThat(homeApplianceResult.getPowerConsumption(), equalTo(100));
+        assertThat(homeApplianceResult.getYearProduction(), equalTo(2015));
+        assertThat(homeApplianceResult.isTurnOn(), equalTo(false));
+        assertThat(homeApplianceResult.getHomeApplianceType().toString(), equalTo("home".toUpperCase()));
     }
 }

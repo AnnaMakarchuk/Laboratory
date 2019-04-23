@@ -2,6 +2,8 @@ package com.epam.factories;
 
 import com.epam.models.ElectricalAppliance;
 import com.epam.models.PowerTool;
+import com.epam.utils.ColumnNames;
+import com.epam.utils.ResultSetFields;
 import org.junit.Test;
 
 import java.sql.ResultSet;
@@ -23,12 +25,10 @@ public class PowerToolFactoryTest {
         int yearProduction = 2015;
         boolean turnOn = false;
         String type = "drill";
-
-        ElectricalAppliance result = PowerToolFactory.getInstance()
+        ElectricalAppliance electricalApplianceResult = PowerToolFactory.getInstance()
                 .createFactory(applianceName, brand, powerConsumption, yearProduction, turnOn, type);
-
-        assertThat(result, instanceOf(PowerTool.class));
-        PowerTool powerToolResult = (PowerTool) result;
+        assertThat(electricalApplianceResult, instanceOf(PowerTool.class));
+        PowerTool powerToolResult = (PowerTool) electricalApplianceResult;
         assertThat(powerToolResult.getApplianceName(), equalTo(applianceName));
         assertThat(powerToolResult.getBrand(), equalTo(brand));
         assertThat(powerToolResult.getPowerConsumption(), equalTo(powerConsumption));
@@ -40,16 +40,15 @@ public class PowerToolFactoryTest {
     @Test
     public void shouldCreateHomeApplianceFromResulSet() throws SQLException {
         ResultSet rsMock = mock(ResultSet.class);
-        when(rsMock.getString("appliance_name")).thenReturn("drill");
-        when(rsMock.getString("brand")).thenReturn("H");
-        when(rsMock.getInt("power_watt")).thenReturn(100);
-        when(rsMock.getInt("production_year")).thenReturn(2015);
-        when(rsMock.getBoolean("turned_on")).thenReturn(false);
-        when(rsMock.getString("appliance_type")).thenReturn("drill");
-
-        ElectricalAppliance result = PowerToolFactory.getInstance().create(rsMock);
-        assertThat(result, instanceOf(PowerTool.class));
-        PowerTool powerToolResult = (PowerTool) result;
+        when(ResultSetFields.getStringByName(ColumnNames.APPLIANCE_NAME, rsMock)).thenReturn("drill");
+        when(ResultSetFields.getStringByName(ColumnNames.BRAND, rsMock)).thenReturn("H");
+        when(ResultSetFields.getIntByName(ColumnNames.POWER_WATT, rsMock)).thenReturn(100);
+        when(ResultSetFields.getIntByName(ColumnNames.PRODUCTION_YEAR, rsMock)).thenReturn(2015);
+        when(ResultSetFields.getBooleanByName(ColumnNames.TURNED_ON, rsMock)).thenReturn(false);
+        when(ResultSetFields.getStringByName(ColumnNames.APPLIANCE_TYPE, rsMock)).thenReturn("drill");
+        ElectricalAppliance electricalApplianceResult = PowerToolFactory.getInstance().create(rsMock);
+        assertThat(electricalApplianceResult, instanceOf(PowerTool.class));
+        PowerTool powerToolResult = (PowerTool) electricalApplianceResult;
         assertThat(powerToolResult.getApplianceName(), equalTo("drill"));
         assertThat(powerToolResult.getBrand(), equalTo("H"));
         assertThat(powerToolResult.getPowerConsumption(), equalTo(100));

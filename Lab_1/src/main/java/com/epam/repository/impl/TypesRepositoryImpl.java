@@ -11,20 +11,20 @@ public class TypesRepositoryImpl implements TypesRepository {
 
     @Override
     public void insert(String specific_types, String general_type) {
-        Connection con = ConnectionService.getInstance();
-        PreparedStatement stmt = null;
+        Connection connection = ConnectionService.getInstance();
+        PreparedStatement preparedStatement = null;
         try {
             String sql = "INSERT INTO types (specific_types, general_type) VALUES (?, ?)";
-            stmt = con.prepareStatement(sql);
-            stmt.setString(1, specific_types);
-            stmt.setString(2, general_type);
-            stmt.executeUpdate();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, specific_types);
+            preparedStatement.setString(2, general_type);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(stmt!=null){
-                    con.close();
+                if (preparedStatement != null) {
+                    connection.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public interface Factories {
 
-    ElectricalAppliance createFactory(String applianceName, String brand, int powerConsumption, int yearProduction, boolean turnOn
-            , String inputType);
+    ElectricalAppliance createFactory(String applianceName, String brand, int powerConsumption, int yearProduction,
+                                      boolean turnOn, String inputType);
 
-    ElectricalAppliance create(ResultSet rs) throws SQLException;
+    ElectricalAppliance create(ResultSet resultSet) throws SQLException;
 
 }

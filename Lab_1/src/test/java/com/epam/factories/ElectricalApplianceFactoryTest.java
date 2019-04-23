@@ -8,38 +8,38 @@ import static org.junit.Assert.*;
 
 public class ElectricalApplianceFactoryTest {
 
-    @Test (expected = IllegalArgumentException.class)
-    public void shouldThrowExceprionWhenIncorrectType(){
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceprionWhenIncorrectType() {
         String type = "door";
         ElectricalApplianceFactory.createTechnique(type);
-}
+    }
 
     @Test
-    public void shouldReturnLargeHomeApplianceFactory () {
+    public void shouldReturnLargeHomeApplianceFactory() {
         String type = "largehomeAppliance";
         Factories factories =
                 ElectricalApplianceFactory.createTechnique(type);
-        assertThat (factories, instanceOf(LargeHomeApplianceFactory.class));
+        assertThat(factories, instanceOf(LargeHomeApplianceFactory.class));
     }
 
     @Test
-    public void shouldReturnHomeApplianceFactory () {
+    public void shouldReturnHomeApplianceFactory() {
         String type = "homeAppliance";
         Factories factories = ElectricalApplianceFactory.createTechnique(type);
-        assertThat (factories, is(HomeApplianceFactory.getInstance()));
+        assertThat(factories, is(HomeApplianceFactory.getInstance()));
     }
 
     @Test
-    public void shouldReturnMultimediaFactory () {
+    public void shouldReturnMultimediaFactory() {
         String type = "multimedia";
         Factories factories = ElectricalApplianceFactory.createTechnique(type);
-        assertThat (factories, is(MultiMediaFactory.getInstance()));
+        assertThat(factories, is(MultiMediaFactory.getInstance()));
     }
 
     @Test
-    public void shouldReturnPowerToolsFactory () {
+    public void shouldReturnPowerToolsFactory() {
         String type = "powertool";
         Factories factories = ElectricalApplianceFactory.createTechnique(type);
-        assertThat (factories, is(PowerToolFactory.getInstance()));
+        assertThat(factories, is(PowerToolFactory.getInstance()));
     }
 }

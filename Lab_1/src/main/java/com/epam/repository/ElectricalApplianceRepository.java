@@ -8,13 +8,11 @@ public interface ElectricalApplianceRepository {
 
     void insert(List<ElectricalAppliance> applianceList);
 
-    void turnOnAppliance (String applianceName);
+    void turnOnAppliance(String applianceName);
 
     List<ElectricalAppliance> findApplianceSortByPower();
 
     List<ElectricalAppliance> findApplianceByParameters(int productionYear, int powerConsumption);
 
     int findTotalPower();
-
-
 }

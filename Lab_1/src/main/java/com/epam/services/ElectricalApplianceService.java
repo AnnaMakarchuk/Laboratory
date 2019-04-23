@@ -6,14 +6,11 @@ import java.util.List;
 
 public interface ElectricalApplianceService {
 
-    void createListTurnedOn ();
+    void createListTurnedOn();
 
     List<ElectricalAppliance> createApplianceSortByPower();
 
     List<ElectricalAppliance> createApplianceByParameters(int productionYear, int powerConsumption);
 
     int calculateTotalPowerConsumption();
-
-
-
 }

@@ -20,15 +20,15 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ElectricalApplianceServiceImplTest {
-    private ElectricalApplianceService apllianceService;
-    private List<ElectricalAppliance> applianceList;
+    private ElectricalApplianceService electricalApplianceService;
+    private List<ElectricalAppliance> electricalAppliances;
 
     @Mock
-    ElectricalApplianceRepository repository;
+    ElectricalApplianceRepository electricalApplianceRepository;
 
     @Before
     public void setUp() {
-        apllianceService = new ElectricalApplianceServiceImpl(repository);
+        electricalApplianceService = new ElectricalApplianceServiceImpl(electricalApplianceRepository);
         ElectricalAppliance appliance1 = ElectricalApplianceFactory.createTechnique("LARGEHOMEAPPLIANCE")
                 .createFactory("Fringe", "Zanussi", 200, 2010,
                         true, "storage");
@@ -41,26 +41,26 @@ public class ElectricalApplianceServiceImplTest {
         ElectricalAppliance appliance4 = ElectricalApplianceFactory.createTechnique("powertool")
                 .createFactory("Router", "Asus", 10, 2012,
                         true, "router");
-        applianceList = new ArrayList<>();
-        applianceList.add(appliance1);
-        applianceList.add(appliance2);
-        applianceList.add(appliance3);
-        applianceList.add(appliance4);
+        electricalAppliances = new ArrayList<>();
+        electricalAppliances.add(appliance1);
+        electricalAppliances.add(appliance2);
+        electricalAppliances.add(appliance3);
+        electricalAppliances.add(appliance4);
     }
 
     @Test
     public void shouldCreateListOrderByPower() {
-        when(repository.findApplianceSortByPower()).thenReturn(applianceList);
-        List<ElectricalAppliance> resultList = apllianceService.createApplianceSortByPower();
+        when(electricalApplianceRepository.findApplianceSortByPower()).thenReturn(electricalAppliances);
+        List<ElectricalAppliance> resultList = electricalApplianceService.createApplianceSortByPower();
         assertThat(resultList, notNullValue());
         assertThat(resultList, hasSize(4));
     }
 
     @Test
-    public void shouldFindTotalPower(){
+    public void shouldFindTotalPower() {
         int actual = 750;
-        when(repository.findTotalPower()).thenReturn(actual);
-        int powerTotal = apllianceService.calculateTotalPowerConsumption();
+        when(electricalApplianceRepository.findTotalPower()).thenReturn(actual);
+        int powerTotal = electricalApplianceService.calculateTotalPowerConsumption();
         assertThat(powerTotal, equalTo(actual));
     }
 
@@ -68,10 +68,8 @@ public class ElectricalApplianceServiceImplTest {
     public void shouldFindByParameters() {
         int power = 250;
         int year = 2005;
-        when(repository.findApplianceByParameters(power, year)).thenReturn(applianceList.subList(2,3));
-        List<ElectricalAppliance> resultList = apllianceService.createApplianceByParameters(power, year);
+        when(electricalApplianceRepository.findApplianceByParameters(power, year)).thenReturn(electricalAppliances.subList(2, 3));
+        List<ElectricalAppliance> resultList = electricalApplianceService.createApplianceByParameters(power, year);
         assertThat(resultList, hasSize(1));
     }
-
-
 }
