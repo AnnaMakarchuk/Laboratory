@@ -25,9 +25,8 @@ public class DocumentService {
         this.writeArticle = writeArticle;
     }
 
-    public void saveArticleIFile() {
-        String document = createDocument().getDocument();
-        writeArticle.saveTextInFile(document);
+    public void saveArticleIFile(Document document) {
+        writeArticle.saveTextInFile(document.getDocument());
     }
 
     public Document createDocument() {

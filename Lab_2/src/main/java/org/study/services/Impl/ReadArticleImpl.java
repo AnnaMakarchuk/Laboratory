@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ReadArticleImpl implements ReadArticle {
 
-    private static final String FILE_SOURCE_READ = "D:/study/study/JUnitArticle.txt";
+    private static final String FILE_SOURCE_READ = "./src/main/resources/JUnitArticle.txt";
 
     @Override
     public List<Paragraph> readText() {

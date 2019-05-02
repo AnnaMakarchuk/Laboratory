@@ -1,7 +1,6 @@
 package org.study;
 
 import org.study.models.Document;
-import com.Anna.services.Impl.*;
 import org.study.services.Impl.*;
 
 public class Main {
@@ -10,6 +9,6 @@ public class Main {
                 new ReadArticleImpl(), new WriteArticleImpl());
         Document document = documentService.createDocument();
         System.out.println(document.getDocument());
-        documentService.saveArticleIFile();
+        documentService.saveArticleIFile(document);
     }
 }

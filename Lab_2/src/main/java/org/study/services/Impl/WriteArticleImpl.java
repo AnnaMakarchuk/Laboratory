@@ -8,8 +8,7 @@ import java.io.IOException;
 
 public class WriteArticleImpl implements WriteArticle {
 
-    private static final String FILE_SOURCE_WRITE =
-            "D:/workspace/cources/Laboratory/Lab_2/src/main/resources/ArticleCopy.txt";
+    private static final String FILE_SOURCE_WRITE = "./src/main/resources/ArticleCopy.txt";
 
     @Override
     public void saveTextInFile(String documentResult) {
