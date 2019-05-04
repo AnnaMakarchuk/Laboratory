@@ -20,10 +20,9 @@ public class Parser implements TextParser {
             sentenceList.add(new Sentence("\n"));
             return sentenceList;
         }
-        String[] regexString;
         Pattern pattern = Pattern.compile(SENTENCE_SEPARATOR_REGEX);
-        regexString = pattern.split(paragraph.getParagraph());
-        ConvertArrayInSentence(sentenceList, regexString);
+        String[] regexString = pattern.split(paragraph.getParagraph());
+        convertArrayInSentence(sentenceList, regexString);
         return sentenceList;
     }
 
@@ -39,7 +38,7 @@ public class Parser implements TextParser {
         return matcher.matches();
     }
 
-    private void ConvertArrayInSentence(List<Sentence> sentenceList, String[] array) {
+    private void convertArrayInSentence(List<Sentence> sentenceList, String[] array) {
         for (String anArray : array) {
             sentenceList.add(new Sentence(anArray));
         }

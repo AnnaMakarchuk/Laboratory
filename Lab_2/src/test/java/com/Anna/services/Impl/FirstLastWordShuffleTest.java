@@ -20,7 +20,7 @@ public class FirstLastWordShuffleTest {
     @Before
     public void setUp() {
         shuffle = new FirstLastWordShuffle();
-        sentenceList.add(new Sentence("study story"));
+        sentenceList.add(new Sentence("Study interesting story"));
         sentenceList.add(new Sentence("Wow, study lives in Ukraine."));
         sentenceList.add(new Sentence("It's short!"));
     }
@@ -29,7 +29,7 @@ public class FirstLastWordShuffleTest {
     public void shouldCheckSwapMethodForListSentence() {
         List<Sentence> sentenceListResult = shuffle.createShuffleSentenceList(sentenceList);
         List<Sentence> sentenceListExpected = new LinkedList<>();
-        sentenceListExpected.add(new Sentence("story study"));
+        sentenceListExpected.add(new Sentence("story interesting Study"));
         sentenceListExpected.add(new Sentence("Ukraine, study lives in Wow."));
         sentenceListExpected.add(new Sentence("short It's!"));
         assertThat(sentenceListResult, equalTo(sentenceListExpected));

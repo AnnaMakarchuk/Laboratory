@@ -33,7 +33,7 @@ public class Sentence {
 
     @Override
     public String toString() {
-        return "\nSentence number" + sentence;
+        return "\nSentence number " + sentence;
     }
 }
 
